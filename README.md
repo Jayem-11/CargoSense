@@ -266,7 +266,6 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
 ## 🔮 Future Work
 
 * Integrate **real-time carrier performance APIs**.
-* Deploy on **Kubernetes** for scaling agents independently.
 * Add **dashboards** for visual monitoring of shipments.
 * Train a **custom ML model** using historical shipping datasets to forcast the risk probability.
 
