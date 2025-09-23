@@ -1,9 +1,8 @@
 # 🚚 CargoSense 
-    smarter routes, seamless delivery
+   
+**smarter routes, seamless delivery**
 
----
-
-## 📌 Inspiration
+#### 📌 Inspiration
 
 Delays in cargo shipments cost businesses time, money, and trust. We wanted to explore how agents can help predict risks (traffic, weather, carrier reliability) and provide actionable insights in real-time.
 
