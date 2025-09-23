@@ -1,0 +1,10 @@
+name: explanation
+description: This agent generates human-readable risk explanations and recommended actions for shipments based on their features and predicted delay probability.
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn

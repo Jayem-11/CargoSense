@@ -1,0 +1,12 @@
+name: ingest
+description: ingest agent takes in cargo sense csv input and returns dictionary with parsed entries
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn
+  - requests
+

@@ -1,0 +1,13 @@
+name: geocode_route
+description: This agent enriches shipment data by geocoding origins and destinations with TomTom and calculating route distance, duration, and coordinates.
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn
+  - pydantic
+  - python-dotenv 
+  - requests

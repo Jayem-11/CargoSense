@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Maestro
+.maestro_state.json
+
+

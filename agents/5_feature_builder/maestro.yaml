@@ -1,0 +1,11 @@
+name: feature_builder
+description: This Feature Builder Agent processes shipment data by calculating delivery time, environmental conditions, and carrier reliability to generate structured features for predictive models.
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn
+ 

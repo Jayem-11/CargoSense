@@ -1,0 +1,12 @@
+name: weather
+description: This agent enriches shipment data with real-time weather risks along its route by sampling locations and fetching precipitation and wind forecasts.
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn
+  - requests
+  - numpy

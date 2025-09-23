@@ -1,0 +1,10 @@
+name: riskModel
+description: This agent evaluates shipment features to calculate a baseline delay probability and assign a corresponding risk level.
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn

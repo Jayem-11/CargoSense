@@ -1,0 +1,12 @@
+name: traffic
+description: This agent enriches shipments with a congestion index by sampling route points and fetching live traffic flow data from the TomTom API.
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn
+  - python-dotenv 
+  - requests

@@ -1,0 +1,10 @@
+name: notification
+description: This agent generates human-readable console notifications based on a shipment’s risk level (LOW, MEDIUM, HIGH).
+entrypoint: main.py
+runtime: uvicorn
+dockerfile: dockerfile
+version: 0.1.0
+
+requirements:
+  - fastapi
+  - uvicorn
