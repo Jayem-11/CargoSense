@@ -56,10 +56,10 @@ OPEN_METEO_URL="enter url"
 ```
 
 4. **Run locally** (via FastAPI)
-   Each agent is containerized. Example for ingestion:
+   Each agent is containerized. Example for orchestrator:
 
 ```bash
-uvicorn agents.ingest:app --host 0.0.0.0 --port 8081
+uvicorn cargosense_orchestrator.main:app --reload
 ```
 
 ---
