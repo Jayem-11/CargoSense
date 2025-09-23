@@ -1,4 +1,4 @@
-# CargoSense 🚚
+# 🚚 CargoSense 
 ### smarter routes, seamless delivery
 
 ---
@@ -262,35 +262,12 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
 
 * **Data sources**: We used free-tier APIs (TomTom, OpenWeather). Limited quota may affect scale.
 * **Carrier reliability**: Static values were used instead of real-time reliability feeds due to lack of free APIs.
-* **Orchestration**: Agents run independently via FastAPI; Maestro SDK could manage orchestration more robustly.
-* **Database**: SQLite for simplicity → good for hackathons but not production-scale.
-
 ---
 
 ## 🔮 Future Work
 
 * Integrate **real-time carrier performance APIs**.
-* Use **streaming event pipelines** (Kafka, RabbitMQ) instead of HTTP chaining.
 * Deploy on **Kubernetes** for scaling agents independently.
 * Add **dashboards** for visual monitoring of shipments.
-* Train a **custom ML model** using historical shipping datasets.
-
----
-
-## ✅ Example Workflow
-
-1. Call `/ingest` with shipment details.
-2. It triggers geocode → weather/traffic → features → risk → explanation.
-3. Final JSON:
-
-```json
-{
-  "shipment_id": "SHP-1001",
-  "delay_prob": 0.67,
-  "risk_level": "HIGH",
-  "summary": "High risk of delay due to heavy traffic and moderate weather disruptions."
-}
-```
-
----
+* Train a **custom ML model** using historical shipping datasets to forcast the risk probability.
 
