@@ -1,5 +1,5 @@
 import requests
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 
 
 app = FastAPI(title="CargoSense")
@@ -18,6 +18,27 @@ BASES = {
 def call(agent, payload):
     resp = requests.post(BASES[agent], json=payload)
     return resp.json()
+
+
+# Required shipment fields
+REQUIRED_FIELDS = [
+    "shipment_id",
+    "origin",
+    "destination",
+    "carrier",
+    "dispatch_ts",
+    "expected_ts"
+]
+
+def validate_shipments(shipments: list):
+    """Check all shipments for missing fields before processing."""
+    for i, shipment in enumerate(shipments, start=1):
+        missing = [f for f in REQUIRED_FIELDS if f not in shipment or shipment[f] in ("", None)]
+        if missing:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Shipment {i} missing field(s): {', '.join(missing)}"
+            )
 
 def run_pipeline(data):
     shipment_records = []
@@ -46,5 +67,13 @@ def health():
 @app.post("/cargosense")
 async def notify_endpoint(request: Request):
     shipment = await request.json()
+
+    # Ensure it's a list
+    if not isinstance(shipment, list):
+        raise HTTPException(status_code=400, detail="Input must be a list of shipments")
+
+    # validate before running pipeline
+    validate_shipments(shipment)
+
     output = run_pipeline(shipment)
     return {"processed_shipments": output}
