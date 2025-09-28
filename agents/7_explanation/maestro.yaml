@@ -8,3 +8,5 @@ version: 0.1.0
 requirements:
   - fastapi
   - uvicorn
+  - python-dotenv
+  - google-generativeai
