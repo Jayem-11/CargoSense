@@ -26,7 +26,7 @@ flowchart LR
 * **Weather Agent** – pulls weather conditions.
 * **Traffic Agent** – gets congestion information.
 * **Feature Builder** – combines features into a risk profile.
-* **Risk Model** – predicts delay probability & risk level.
+* **Risk Model** – predicts delay probability & risk level using a `RandomForestClassifier` and a baseline risk score.
 * **Explanation Agent** – generates human-readable summaries using `gemini-2.5-flash`.
 * **Notify Agent** – Give alerts.
 
@@ -261,6 +261,7 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
 
 * **Data sources**: We used free-tier APIs (TomTom, OpenWeather). Limited quota may affect scale.
 * **Gemini**: We used the free version of `gemini-2.5-flash`. This comes with Limits.
+* **RandomForestClassifier**: This model was trained using synthetic data. Realtime data collected should be used in future.
 * **Carrier reliability**: Static values were used instead of real-time reliability feeds due to lack of free APIs.
 ---
 
