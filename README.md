@@ -27,7 +27,7 @@ flowchart LR
 * **Traffic Agent** – gets congestion information.
 * **Feature Builder** – combines features into a risk profile.
 * **Risk Model** – predicts delay probability & risk level.
-* **Explanation Agent** – generates human-readable summaries.
+* **Explanation Agent** – generates human-readable summaries using `gemini-2.5-flash`.
 * **Notify Agent** – Give alerts.
 
 ---
