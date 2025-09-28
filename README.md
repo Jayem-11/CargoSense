@@ -260,6 +260,7 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
 ## ⚖️ Tradeoffs
 
 * **Data sources**: We used free-tier APIs (TomTom, OpenWeather). Limited quota may affect scale.
+* **Gemini**: We used the free version of `gemini-2.5-flash`. This comes with Limits.
 * **Carrier reliability**: Static values were used instead of real-time reliability feeds due to lack of free APIs.
 ---
 
