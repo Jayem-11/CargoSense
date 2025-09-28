@@ -1,5 +1,5 @@
 name: riskModel
-description: This agent evaluates shipment features to calculate a baseline delay probability and assign a corresponding risk level.
+description: This agent scores shipments by combining a rule-based baseline model and a trained ML model, selecting the higher delay probability to assign the final risk level.
 entrypoint: main.py
 runtime: uvicorn
 dockerfile: dockerfile
@@ -8,3 +8,5 @@ version: 0.1.0
 requirements:
   - fastapi
   - uvicorn
+  - numpy
+  - scikit-learn==1.3.2
