@@ -110,7 +110,7 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
             "dest_lat": -4.0574645,
             "dest_lon": 39.663945,
             "distance_km": 487.63,
-            "duration_hr": 8.71,
+            "duration_hr": 8.58,
             "route_points": [
                 [
                     -1.28604,
@@ -153,26 +153,32 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
                     36.82012
                 ]
             ],
-            "route_max_rain_mm": 0.0,
-            "route_max_wind_kph": 14.4,
+            "route_max_rain_mm": 1.6,
+            "route_max_wind_kph": 14.7,
             "route_storm": 0,
-            "congestion_index": 0.3,
+            "congestion_index": 0.53,
             "features": {
                 "shipment_id": "SHP-1001",
                 "distance_km": 487.63,
                 "hours_to_deadline": 34.0,
                 "origin_rain_mm": 0.0,
                 "origin_storm": 0,
-                "congestion_index": 0.3,
+                "congestion_index": 0.53,
                 "carrier_reliability": 0.83
             },
-            "delay_prob": 0.26,
-            "risk_level": "LOW",
-            "summary": "Order SHP-1001 risk 26% due to long route distance.",
+            "baseline_delay_prob": 0.329,
+            "ml_delay_prob": 0.04,
+            "delay_prob": 0.329,
+            "risk_level": "MEDIUM",
+            "source": "baseline",
+            "summary": "Shipment SHP-1001 has a medium risk of delay (32.9% probability) primarily due to moderate congestion along the significant route from Nairobi to Mombasa.",
             "actions": [
-                "No action needed"
+                "Monitor real-time traffic conditions on the Nairobi-Mombasa route.",
+                "Proactively inform the customer about the medium delay risk and potential impact.",
+                "Verify carrier's contingency plans for managing congestion-related delays."
             ],
-            "notification": "Shipment SHP-1001 is at LOW risk of delay. No action needed."
+            "explained_by": "gemini",
+            "notification": "Shipment SHP-1001 is at MEDIUM risk of delay. Monitor closely."
         },
         {
             "shipment_id": "SHP-1002",
@@ -187,7 +193,7 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
             "dest_lat": 0.5184695,
             "dest_lon": 35.2739056,
             "distance_km": 123.75,
-            "duration_hr": 2.94,
+            "duration_hr": 2.76,
             "route_points": [
                 [
                     -0.10311,
@@ -230,8 +236,8 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
                     34.75577
                 ]
             ],
-            "route_max_rain_mm": 0.0,
-            "route_max_wind_kph": 16.3,
+            "route_max_rain_mm": 0.4,
+            "route_max_wind_kph": 13.3,
             "route_storm": 0,
             "congestion_index": 0.0,
             "features": {
@@ -241,14 +247,20 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
                 "origin_rain_mm": 0.0,
                 "origin_storm": 0,
                 "congestion_index": 0.0,
-                "carrier_reliability": 0.76
+                "carrier_reliability": 0.73
             },
-            "delay_prob": 0.214,
+            "baseline_delay_prob": 0.244,
+            "ml_delay_prob": 0.04,
+            "delay_prob": 0.244,
             "risk_level": "LOW",
-            "summary": "Order SHP-1002 risk 21% due to minor traffic and weather factors.",
+            "source": "baseline",
+            "summary": "Shipment SHP-1002 has a low probability of delay, with current conditions indicating no significant weather or congestion risks.",
             "actions": [
-                "No action needed"
+                "Monitor shipment progress for any unforeseen changes.",
+                "Maintain communication with carrier FedEx to ensure timely delivery.",
+                "No immediate intervention required due to the low-risk assessment."
             ],
+            "explained_by": "gemini",
             "notification": "Shipment SHP-1002 is at LOW risk of delay. No action needed."
         }
     ]
