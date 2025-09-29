@@ -1,16 +1,10 @@
 from fastapi import FastAPI, Request
-import pickle
-import numpy as np
-import os
+import requests
 
 app = FastAPI(title="Shipment Risk Scoring Agent")
 
-# Try loading ML model
-MODEL_PATH = "shipment_delay_model.pkl"
-model = None
-if os.path.exists(MODEL_PATH):
-    with open(MODEL_PATH, "rb") as f:
-        model = pickle.load(f)
+# Load Hugging Face API details
+HF_API_URL = "https://jayem-11-risk-analysis.hf.space/predict"
 
 # -------- Baseline rule-based model --------
 def baseline_score(features: dict) -> float:
@@ -22,28 +16,30 @@ def baseline_score(features: dict) -> float:
     p -= max(0.0, (features.get("carrier_reliability", 0.7) - 0.7))  # better carrier reduces risk
     return max(0.0, min(p, 0.99))
 
-# -------- ML model predictor --------
+# -------- ML model predictor via Hugging Face --------
 def ml_score(features: dict) -> float | None:
-    if model is None:
-        return None  # fallback if model isn't loaded
 
-    numeric_features = {
-        "distance_km": features.get("distance_km", 0.0),
-        "hours_to_deadline": features.get("hours_to_deadline", 0.0),
-        "origin_rain_mm": features.get("origin_rain_mm", 0.0),
-        "origin_storm": features.get("origin_storm", 0),
-        "congestion_index": features.get("congestion_index", 0.0),
-        "carrier_reliability": features.get("carrier_reliability", 0.7),
-    }
+    try:
+        response = requests.post(
+            HF_API_URL,
+            json={"inputs": features},
+            timeout=10,
+        )
+        response.raise_for_status()
+        result = response.json()
 
-    arr = np.array([[numeric_features["distance_km"],
-                 numeric_features["hours_to_deadline"],
-                 numeric_features["origin_rain_mm"],
-                 numeric_features["origin_storm"],
-                 numeric_features["congestion_index"],
-                 numeric_features["carrier_reliability"]]])
-    prob = model.predict_proba(arr)[0][1]
-    return float(prob)
+        # Expected HF format: {"delay_prob": 0.04, "risk_level": "LOW"}
+        if isinstance(result, dict) and "delay_prob" in result:
+            return {
+                "ml_delay_prob": float(result["delay_prob"]),
+                "ml_risk_level": result.get("risk_level", "UNKNOWN"),
+            }
+
+    except Exception as e:
+        print("HF request failed:", e)
+        return None
+
+    return None
 
 # -------- Unified risk function --------
 def add_risk(shipment: dict) -> dict:
@@ -51,7 +47,7 @@ def add_risk(shipment: dict) -> dict:
 
     # Compute both
     base_prob = baseline_score(f)
-    ml_prob = ml_score(f) if model else None
+    ml_prob = ml_score(f)["ml_delay_prob"]
 
     # Choose the larger one
     if ml_prob is not None:
