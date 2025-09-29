@@ -92,6 +92,8 @@ Endpoint: `https://maestro-3a737890-231b-45e5-a197-ce006ba9bd02-zcaxlbuauq-uc.a.
 
 ```
 
+Carriers: Only these carriers are supported for now `DHL` `UPS` `FedEx` `Posta`
+
 ✅ Response:
 
 ```json
